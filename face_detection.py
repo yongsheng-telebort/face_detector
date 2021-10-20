@@ -65,39 +65,39 @@ elif app_mode == 'Try the app':
         file_bytes = np.asarray(bytearray(image_file.read()), dtype=np.uint8)
         image = cv.imdecode(file_bytes, 1)
         image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        st.sidebar.text('Original Image')
+        st.sidebar.image(image)
+
+        # Detection
+        # Phase 2: Load trained data
+        trained_face_data = cv.CascadeClassifier(
+            "haarcascade_frontalface_default.xml")
+
+        # Phase 3: Image Processing for Detection
+        # Read image
+        # img = cv.imread("outing.jpg")
+
+        # resize image
+        # scale = 0.2
+        # width = int(img.shape[1]*scale)
+        # height = int(img.shape[0]*scale)
+        # dim = (width, height)
+        # img = cv.resize(img, dim, interpolation=cv.INTER_AREA)
+
+        # Change image to gray
+        gray_img = cv.cvtColor(image, cv.COLOR_RGB2GRAY)
+
+        # Phase 4: Face Detection
+        # Detect faces
+        face_coordinates = trained_face_data.detectMultiScale(gray_img)
+
+        # To draw rectangle for each face
+        for face in face_coordinates:
+            (x, y, w, h) = face
+            cv.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 5)
+
+        # Phase 5: Show image
+        st.subheader('Output Image')
+        st.image(image, use_column_width=True)
     else:
         pass
-    st.sidebar.text('Original Image')
-    st.sidebar.image(image)
-
-    # Detection
-    # Phase 2: Load trained data
-    trained_face_data = cv.CascadeClassifier(
-        "haarcascade_frontalface_default.xml")
-
-    # Phase 3: Image Processing for Detection
-    # Read image
-    # img = cv.imread("outing.jpg")
-
-    # resize image
-    # scale = 0.2
-    # width = int(img.shape[1]*scale)
-    # height = int(img.shape[0]*scale)
-    # dim = (width, height)
-    # img = cv.resize(img, dim, interpolation=cv.INTER_AREA)
-
-    # Change image to gray
-    gray_img = cv.cvtColor(image, cv.COLOR_RGB2GRAY)
-
-    # Phase 4: Face Detection
-    # Detect faces
-    face_coordinates = trained_face_data.detectMultiScale(gray_img)
-
-    # To draw rectangle for each face
-    for face in face_coordinates:
-        (x, y, w, h) = face
-        cv.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 5)
-
-    # Phase 5: Show image
-    st.subheader('Output Image')
-    st.image(image, use_column_width=True)
