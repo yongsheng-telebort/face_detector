@@ -66,8 +66,7 @@ elif app_mode == 'Try the app':
         image = cv.imdecode(file_bytes, 1)
         image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
     else:
-        image = cv.imread("./outing.jpg")
-        image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        pass
     st.sidebar.text('Original Image')
     st.sidebar.image(image)
 
