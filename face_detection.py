@@ -52,7 +52,7 @@ elif app_mode == 'Try the app':
     # st.sidebar.markdown('''
     #     Choose A Number
     # ''')
-    st.markdown('**Detected Faces**')
+    st.markdown('**Detected Faces**', unsafe_allow_html=True)
     # kpi1_text = st.markdown('0')
 
     # max_faces = st.sidebar.number_input(
