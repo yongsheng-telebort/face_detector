@@ -4,7 +4,7 @@ import cv2 as cv
 # Phase 2: Load trained data
 trained_face_data = cv.CascadeClassifier(
     "haarcascade_frontalface_default.xml")
-
+print("Hello world")
 # Phase 3: Image Processing for Detection
 # Read image
 img = cv.imread("outing.jpg")
